@@ -36,14 +36,11 @@ def play_game(game_mode, difficulty='medium'):
                                     else:
                                         winner = "Black" if black_score > white_score else "White" if white_score > black_score else "Tie"
                                     
-                                    # Draw final board
                                     draw_board(game)
-                                    # Draw winner screen
                                     draw_winner_screen(winner, black_score, white_score)
                                     pygame.display.flip()
                                     waiting_for_click = True
 
-        # AI's turn
         if not game_over and game_mode == 'ai' and game.current_player == 'W':
             pygame.time.wait(500)  # Add a small delay to make AI moves visible
             game.ai_move()
@@ -54,9 +51,7 @@ def play_game(game_mode, difficulty='medium'):
                     black_score, white_score = game.count_pieces()
                     winner = "Player" if black_score > white_score else "AI" if white_score > black_score else "Tie"
                     
-                    # Draw final board
                     draw_board(game)
-                    # Draw winner screen
                     draw_winner_screen(winner, black_score, white_score)
                     pygame.display.flip()
                     waiting_for_click = True
@@ -67,15 +62,13 @@ def play_game(game_mode, difficulty='medium'):
 
 def main():
     while True:
-        # Show main menu and get game mode
+       
         game_mode = draw_menu()
         
-        # If AI mode selected, show difficulty menu
         difficulty = 'medium'
         if game_mode == 'ai':
             difficulty = draw_difficulty_menu()
         
-        # Play the game
         play_game(game_mode, difficulty)
 
 if _name_ == "_main_":
